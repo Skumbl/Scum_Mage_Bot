@@ -24,6 +24,7 @@ bot.load_extension("dice_percent") # percentile dice using scum mage format
 bot.load_extension("help") # lists out all / commands and their syntax
 bot.load_extension("tools") # all this does is link to 5e tools until I find a database
 bot.load_extension("initiative") # this handles all the ugly initiative stuff
+bot.load_extension("rulebook")
 # ===================================================================================
 
 
