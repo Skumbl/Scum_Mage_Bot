@@ -220,7 +220,8 @@ class Initiative_Handler(Extension):
                 initiative_order = guild_initiative_orders.get(guild_id, [])
                 initiative_order.clear()
                 guild_initiative_orders[guild_id] = initiative_order
-                await ctx.send("Initiative order has been cleared")
+                message = await ctx.send("Initiative order has been cleared")
+                await ctx.delete(message=last_init_message[guild_id])
                 # Clear the last_init_message for the guild
                 last_init_message[ctx.guild.id] = None
 

@@ -2,6 +2,9 @@ from interactions import Client, Intents, listen, slash_command, SlashContext, O
 from interactions.api.events import MessageCreate
 from d20 import roll
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
