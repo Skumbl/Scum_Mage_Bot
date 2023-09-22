@@ -22,6 +22,7 @@ class Console_Log(Extension):
             response = "the Dev ran out of money"
 
          # need to defer it, otherwise, it fails
+        
         await ctx.defer()
         embeds = [
         interactions.Embed("Question:", ask),
@@ -38,7 +39,7 @@ def check_rules(question):
 
     # Call the GPT-3 API to generate a response
     response = openai.Completion.create(
-        engine="davinci",  #"text-davinci-002" for more cost-effective options.
+        engine="text-davinci-002",  #"text-davinci-002" for more cost-effective options.
         prompt=prompt,
         max_tokens=400,  # Adjust the length as needed
         api_key=AI_TOKEN
