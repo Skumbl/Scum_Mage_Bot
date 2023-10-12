@@ -1,4 +1,4 @@
-from interactions import Extension, listen, slash_command, SlashContext, OptionType, slash_option
+from interactions import Extension, listen, slash_command, SlashContext, OptionType, slash_option, SlashCommandChoice
 from interactions.api.events import Component
 from interactions import ActionRow, Button, ButtonStyle
 import random
@@ -17,8 +17,27 @@ class Initiative_Handler(Extension):
         required=False,
         opt_type=OptionType.STRING
     )
-    async def join_command(self, ctx: SlashContext, mod: str="0"):
-        roll = random.randint(1, 20)
+    @slash_option(
+        name="roll_with",
+        description="roll with advantage or disadvantage",
+        required=False,
+        opt_type=OptionType.INTEGER,
+        choices=[
+            SlashCommandChoice(name="advantage", value=1),
+            SlashCommandChoice(name="disadvantage", value=2)
+        ]
+    )
+    async def join_command(self, ctx: SlashContext, mod: str="0", roll_with: int=0):
+        # Roll initiative for the user
+        
+        if roll_with == 1:
+            r = d20.roll("2d20kh1")
+        elif roll_with == 2:
+            r = d20.roll("2d20kl1")
+        else:
+            r = d20.roll("1d20")
+
+        roll = r.total
         calculated_mod = d20.roll(str(mod)).total
         
         # Get the guild-specific initiative order or create an empty list if it doesn't exist
@@ -40,13 +59,14 @@ class Initiative_Handler(Extension):
         
         initiative_order.append(participant_info)
         initiative_order.sort(key=lambda x: (x["initiative"], x.get("modifier", 0)), reverse=True)
-
         
+        r_express = str(r).split(" = ")
+
         # Store the updated initiative order back in the dictionary
         guild_initiative_orders[guild_id] = initiative_order
         await ctx.send(f"{ctx.author.mention} has joined the fray!\n" +
                         f"🎲 = **{roll + calculated_mod}**\n" + 
-                        f"1d20({roll}) + {calculated_mod}")
+                        f"{r_express[0]} + {calculated_mod}")
 
     # ===================================================================================
 
@@ -140,10 +160,10 @@ class Initiative_Handler(Extension):
         guild_initiative_orders[guild_id] = initiative_order
         
         await ctx.send(f"{ctx.author.mention} has joined the fray!\n" +
-                       f"🎲 = **{roll + mod}**" 
+                       f"🎲 = **{roll + mod}**\n" +
                        f"1d20({roll}) + [{mod}]")
     # ===================================================================================
-    
+
 
     # Components
     components: list[ActionRow] = [
@@ -169,7 +189,8 @@ class Initiative_Handler(Extension):
         initiative_order = guild_initiative_orders.get(ctx.guild.id, [])
         
         if initiative_order:
-            order_text = "\n".join([f"{participant['name'] if 'name' in participant else participant['user'].display_name} | **{participant['initiative']}**" for participant in initiative_order])
+            #order_text = "\n".join([f"**{participant['initiative']}** | {participant['name'] if 'name' in participant else participant['user'].display_name}" for participant in initiative_order])
+            order_text = self.display_init(ctx.guild.id)
             message = await ctx.send(f"**__Initiative Order:__**\n{order_text}", components=self.components)
             
             # Store the message ID as the last_init_message for the guild
@@ -229,4 +250,4 @@ class Initiative_Handler(Extension):
     # ===================================================================================
     def display_init(self, guild_id):
         initiative_order = guild_initiative_orders.get(guild_id, [])
-        return "\n".join(f"~ {participant['name'] if 'name' in participant else participant['user'].display_name} | **{participant['initiative']}**" for participant in initiative_order)
+        return "\n".join(f"**{participant['initiative']}** | {participant['name'] if 'name' in participant else participant['user'].display_name}" for participant in initiative_order)
