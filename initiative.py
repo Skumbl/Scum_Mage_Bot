@@ -86,11 +86,30 @@ class Initiative_Handler(Extension):
         required=False,
         opt_type=OptionType.STRING
     )
-    async def npc_join_command(self, ctx: SlashContext, name: str, mod: str="0"):
+    @slash_option(
+    name="roll_with",
+    description="roll with advantage or disadvantage",
+    required=False,
+    opt_type=OptionType.INTEGER,
+    choices=[
+        SlashCommandChoice(name="advantage", value=1),
+        SlashCommandChoice(name="disadvantage", value=2)
+    ]
+    )
+    async def npc_join_command(self, ctx: SlashContext, name: str, roll_with: int=0, mod: str="0"):
         # Get the guild-specific initiative order or create an empty list if it doesn't exist
         guild_id = ctx.guild.id
         initiative_order = guild_initiative_orders.get(guild_id, [])
 
+        if roll_with == 1:
+            r = d20.roll("2d20kh1")
+        elif roll_with == 2:
+            r = d20.roll("2d20kl1")
+        else:
+            r = d20.roll("1d20")
+
+        # Roll initiative for the NPC
+        roll = r.total
         calculated_mod = d20.roll(str(mod)).total
         
         # Check if the NPC is already in the initiative order
@@ -99,9 +118,6 @@ class Initiative_Handler(Extension):
         if npc_index is not None:
             # Remove the NPC's previous entry
             initiative_order.pop(npc_index)
-        
-        # Roll initiative for the NPC, don't need
-        roll = random.randint(1, 20)
         
         npc_info = {
             "name": name,
@@ -118,6 +134,55 @@ class Initiative_Handler(Extension):
         await ctx.send(f"NPC '{name}' has joined the fray!\n" 
                        + f"🎲 = **{roll + calculated_mod}**")
     # ===================================================================================
+
+
+    #Custom NPC Join Function
+    # ===================================================================================
+    @slash_command(name="custom-npc-join", description="join the initiative with an NPC with a custom value")
+    @slash_option(
+        name="name",
+        description="Name of the NPC",
+        required=True,
+        opt_type=OptionType.STRING
+    )
+    @slash_option(
+        name="roll",
+        description="Initiative Score",
+        required=True,
+        opt_type=OptionType.INTEGER
+    )
+    @slash_option(
+        name="mod",
+        description="Initiative Score",
+        required=False,
+        opt_type=OptionType.INTEGER
+    )
+    async def custom_join_command(self, ctx: SlashContext, name, roll: int, mod: int=0):      # Get the guild-specific initiative order or create an empty list if it doesn't exist
+        guild_id = ctx.guild.id
+        initiative_order = guild_initiative_orders.get(guild_id, [])
+
+        # Check if the user is already in the initiative order
+        user_index = next((index for index, participant in enumerate(initiative_order) if participant.get('user') == ctx.author), None)
+        
+        if user_index is not None:
+            # Remove the user's previous entry
+            initiative_order.pop(user_index)
+        
+        participant_info = {
+            "user": name,
+            "initiative": roll + mod,
+            "modifier": mod
+        }
+        
+        initiative_order.append(participant_info)
+        initiative_order.sort(key=lambda x: (x["initiative"], x.get("modifier", 0)), reverse=True)
+
+        
+        # Store the updated initiative order back in the dictionary
+        guild_initiative_orders[guild_id] = initiative_order
+        
+        await ctx.send(f"NPC '{name}' has joined the fray!\n" 
+                       + f"🎲 = **{roll + mod}**")
 
 
     #Custom Join Function
