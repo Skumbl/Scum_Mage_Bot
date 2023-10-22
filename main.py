@@ -21,11 +21,13 @@ bot = Client(intents=Intents.DEFAULT)
 bot.load_extension("console") # logs if a message is received (DOES NOT LOG DATA)
 bot.load_extension("dice_roll") # the base dice roller in scum mage format
 bot.load_extension("dice_percent") # percentile dice using scum mage format
+bot.load_extension("directional_dice") # directional dice
 bot.load_extension("help") # lists out all / commands and their syntax
 bot.load_extension("tools") # all this does is link to 5e tools until I find a database
 bot.load_extension("initiative") # this handles all the ugly initiative stuff
-bot.load_extension("rulebook")
-bot.load_extension("fudge_dice")
+bot.load_extension("rulebook") # this handles all the ugly rulebook stuff
+bot.load_extension("fudge_dice") # this handles all the ugly fudge dice stuff
+
 # ===================================================================================
 
 
@@ -43,6 +45,5 @@ bot.load_extension("fudge_dice")
 async def guess_command(ctx: SlashContext, number: int):
     await ctx.send(f"thinking ....\nis it .....\n{number}")
 # ===================================================================================
-
 
 bot.start(BOT_TOKEN)
