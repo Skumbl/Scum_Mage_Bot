@@ -11,7 +11,7 @@ class Console_Log(Extension):
     @slash_command(name="rulebook", description="look up any D&D 5e rules")
     @slash_option(
         name="ask",
-        description="ask any question u have on D&D 5e and the Scum AI will answer",
+        description="D&D 5e rules question, must end in a question mark (?)",
         required=True,
         opt_type=OptionType.STRING
     )
@@ -35,7 +35,7 @@ class Console_Log(Extension):
 
 def check_rules(question):
     # Define the prompt for your GPT-3 query
-    prompt = f"Question in the context of Dungeons and Dragons's 5th edition: {question}"
+    prompt = f"In the context of Dungeons and Dragons's 5th edition: {question}"
 
     # Call the GPT-3 API to generate a response
     response = openai.Completion.create(
