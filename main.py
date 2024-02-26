@@ -25,9 +25,9 @@ bot.load_extension("directional_dice") # directional dice
 bot.load_extension("help") # lists out all / commands and their syntax
 bot.load_extension("tools") 
 bot.load_extension("initiative")
-bot.load_extension("rulebook") 
 bot.load_extension("fudge_dice")
 bot.load_extension("availability")
+#bot.load_extension("rulebook") 
 
 # ===================================================================================
 

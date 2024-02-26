@@ -16,7 +16,7 @@ class Help(Extension):
         interactions.Embed("__Custom Value Join Initiative Command:__", custom_join),
         interactions.Embed("__Display Initiative Command:__", display),
         interactions.Embed("__Clear Chat Command:__", clear),
-        interactions.Embed("__Rulebook Check Command:__", rules),
+        #interactions.Embed("__Rulebook Check Command:__", rules),
         interactions.Embed("__5e Tools Command:__", tools),
     ]
         paginator = Paginator.create_from_embeds(self.bot, *embeds)
@@ -212,30 +212,30 @@ This command is used without any additional arguments.
 When you use the `/clear` command, it will automatically delete the last 50 messages
 """
 
-rules = """
+# rules = """
 
-The `/rulebook` command allows you to look up any rules or ask questions related to Dungeons & Dragons 5th edition (D&D 5e). The Scum AI will provide answers to your D&D 5e queries.
+# The `/rulebook` command allows you to look up any rules or ask questions related to Dungeons & Dragons 5th edition (D&D 5e). The Scum AI will provide answers to your D&D 5e queries.
 
-### Accepted Syntax:**
-/rulebook [question]
+# ### Accepted Syntax:**
+# /rulebook [question]
 
-- `[question]`: The question or topic you want to inquire about in the context of D&D 5e.
+# - `[question]`: The question or topic you want to inquire about in the context of D&D 5e.
 
-### Example
-/rulebook How does concentration work in D&D 5e?
+# ### Example
+# /rulebook How does concentration work in D&D 5e?
 
-This command will ask the Scum AI to provide information about how concentration works in D&D 5e.
+# This command will ask the Scum AI to provide information about how concentration works in D&D 5e.
 
-### Usage
-The `/rulebook` command is a handy tool for players and Dungeon Masters (DMs) who have questions or need clarification on rules and mechanics within the D&D 5th edition. It provides quick and accurate answers to D&D-related queries.
+# ### Usage
+# The `/rulebook` command is a handy tool for players and Dungeon Masters (DMs) who have questions or need clarification on rules and mechanics within the D&D 5th edition. It provides quick and accurate answers to D&D-related queries.
 
-### Functionality
-- When you use the `/rulebook` command with a specific question or topic, it will query the Scum AI to generate a response.
-- The response provided by the Scum AI will be displayed in a paginated format for ease of reading.
+# ### Functionality
+# - When you use the `/rulebook` command with a specific question or topic, it will query the Scum AI to generate a response.
+# - The response provided by the Scum AI will be displayed in a paginated format for ease of reading.
 
-**Note:**
-If the dev gets too poor to afford the AI server, it may respond with "the dev ran out of money"
-"""
+# **Note:**
+# If the dev gets too poor to afford the AI server, it may respond with "the dev ran out of money"
+# """
 
 tools = """
 
