@@ -23,17 +23,15 @@ bot.load_extension("dice_roll") # the base dice roller in scum mage format
 bot.load_extension("dice_percent") # percentile dice using scum mage format
 bot.load_extension("directional_dice") # directional dice
 bot.load_extension("help") # lists out all / commands and their syntax
-bot.load_extension("tools") 
-bot.load_extension("initiative")
-bot.load_extension("fudge_dice")
-bot.load_extension("availability")
-#bot.load_extension("rulebook") 
-
+bot.load_extension("tools")  # links 5eTools
+bot.load_extension("initiative") # handles all init commands
+bot.load_extension("fudge_dice") # fudge dice
+bot.load_extension("availability") # checks player availability
+#bot.load_extension("rulebook") NO LONGER BEING IMPLEMENTED
 # ===================================================================================
 
 
-# This is a joke
-# might get rid of it eventually
+# This is stupid, and I don't know why I did it, but I did, and it's here
 # Guess the Number
 # ===================================================================================
 @slash_command(name="guess-number", description="The Scum AI will read your mind")
@@ -46,5 +44,6 @@ bot.load_extension("availability")
 async def guess_command(ctx: SlashContext, number: int):
     await ctx.send(f"thinking ....\nis it .....\n{number}")
 # ===================================================================================
+
 
 bot.start(BOT_TOKEN)

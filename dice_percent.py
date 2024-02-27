@@ -4,6 +4,8 @@ import re
 import d20
 
 class Dice_Percent(Extension):
+
+
     # Percentile Command
     # ===================================================================================
     @slash_command(name="percentile", description="Rolls a 2 percentile die")
@@ -18,6 +20,7 @@ class Dice_Percent(Extension):
         roll_result_str = percentile_dice(calculated_mod)
         await ctx.send(roll_result_str)
     # ===================================================================================
+
 
 # Percentile Dice Helper Function
 # ===================================================================================

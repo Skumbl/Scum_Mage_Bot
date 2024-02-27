@@ -212,31 +212,6 @@ This command is used without any additional arguments.
 When you use the `/clear` command, it will automatically delete the last 50 messages
 """
 
-# rules = """
-
-# The `/rulebook` command allows you to look up any rules or ask questions related to Dungeons & Dragons 5th edition (D&D 5e). The Scum AI will provide answers to your D&D 5e queries.
-
-# ### Accepted Syntax:**
-# /rulebook [question]
-
-# - `[question]`: The question or topic you want to inquire about in the context of D&D 5e.
-
-# ### Example
-# /rulebook How does concentration work in D&D 5e?
-
-# This command will ask the Scum AI to provide information about how concentration works in D&D 5e.
-
-# ### Usage
-# The `/rulebook` command is a handy tool for players and Dungeon Masters (DMs) who have questions or need clarification on rules and mechanics within the D&D 5th edition. It provides quick and accurate answers to D&D-related queries.
-
-# ### Functionality
-# - When you use the `/rulebook` command with a specific question or topic, it will query the Scum AI to generate a response.
-# - The response provided by the Scum AI will be displayed in a paginated format for ease of reading.
-
-# **Note:**
-# If the dev gets too poor to afford the AI server, it may respond with "the dev ran out of money"
-# """
-
 tools = """
 
 The `/tools` command provides a convenient link to the 5eTools website, which is a valuable resource for accessing rules and books related to Dungeons & Dragons 5th edition (D&D 5e).
@@ -255,5 +230,5 @@ The `/tools` command is a quick way to access the 5eTools website, where you can
 about = """
 The **Scum Mage** emerges from the depths, summoned to be your mystical guide in the realm of Discord. This arcane bot is here to assist with all things Dungeons & Dragons, offering commands like /roll for dice rolling, /join for managing initiative, and /rulebook for answering your D&D questions. It even provides a direct link to the 5eTools website via /tools and helps you clean up the chat with /clear. Created by the enigmatic @scumble, Scum Mage is your trusty companion for D&D adventures in Discord.
 
-*Version 0.02*
+*Version 1.00*
 """

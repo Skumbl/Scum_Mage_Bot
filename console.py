@@ -10,7 +10,7 @@ class Console_Log(Extension):
         print("Ready")
         print(f"This bot is written by {self.bot.owner}")
 
-    # print when an event happens
+    # Scum Mage comments whenever someone mentions it
     @listen()
     async def on_message_create(self, event):
         if '<@1149502978835877919>' in event.message.content:

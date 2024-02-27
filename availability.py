@@ -2,10 +2,14 @@ import datetime
 from random import choice, choices
 from interactions import Extension, listen, slash_command, SlashContext, OptionType, slash_option, SlashCommandChoice
 
+
 class Availability (Extension):
     confirmations = {}  # Store user confirmations here
     users = []  # Array to store user information
     guilds = []  # Array to store guild information
+
+
+    # Availability Command
     #===================================================================================
     '''
     availability command
@@ -30,34 +34,25 @@ class Availability (Extension):
 
         for i in range(0, 9):
             await message.add_reaction(emojies[i])
+    # ===================================================================================
 
-     #===================================================================================
-    # @slash_command(name="confirm", description="Confirm your availability", scopes=[1004738478149468191])
-    # @slash_option(
-    #     name="availability",
-    #     description="Choose your availability",
-    #     required=True,
-    #     opt_type=OptionType.STRING,
-    #     choices=[
-    #         SlashCommandChoice(name="Yes", value="yes"),
-    #         SlashCommandChoice(name="No", value="no"),
-    #         SlashCommandChoice(name="Maybe", value="maybe"),
-    #     ]
-    # )
-    # async def confirm_availability(self, ctx: SlashContext, availability: str):
-    #     user_info = {
-    #         "user_id": ctx.author.id,
-    #         "availability": availability
-    #     }
-    #     self.users.append(user_info)
-    #     self.confirmations[ctx.author.mention] = availability
-    #     await ctx.send(f"Your availability has been set to {availability}")
-    # #===================================================================================
-    # @slash_command(name="confirmations", description="List all confirmations", scopes=[1004738478149468191])
-    # async def list_confirmations(self, ctx: SlashContext):
-    #     await ctx.send(f"{self.confirmations}")
-    # #===================================================================================
 
+    # Simple Availability Command
+    # ===================================================================================
+    @slash_command(name="av", description="list the next 7 days including today(day 0) and the next 6 days with the current time and date", scopes=[1004738478149468191])
+    @slash_option(
+        name="session_time",
+        description="what time is the session",
+        required=True,
+        opt_type=OptionType.STRING
+    )
+    async def av_command(self, ctx: SlashContext, session_time: str):
+        await self.availability_command(ctx, session_time)
+    # ===================================================================================
+
+
+# LIST WEEK STRING MAKER
+# ===================================================================================
 def list_week_string_maker(session_time): 
     '''
     list_week_string_maker
@@ -87,3 +82,4 @@ def list_week_string_maker(session_time):
     for i in range(1, len(days)):
         display_str += f"[{i}] {days[i].strftime('%A %m/%d/%Y')}\n"
     return display_str
+# ===================================================================================
