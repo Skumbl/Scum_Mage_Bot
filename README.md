@@ -26,7 +26,7 @@ Scum Mage is built on top of the following libraries and APIs:
 
 - [interactions.py](https://interactions-py.github.io/interactions.py/): Main API for handling Discord interactions. 
 - [d20](https://pypi.org/project/d20/): Dice engine serving as the base for dice rolling functionalities
-* other dependencies can be found in the dependencies.txt file in the git. 
+* other dependencies can be found in the requirements.txt file in the git. 
 ## 🤝 Contributions
 
 Contributions to Scum Mage are welcome! If you encounter any issues, have suggestions for improvements, or want to contribute new features, feel free to open an issue or submit a pull request on [GitHub](https://github.com/Skumbl/Scum_Mage_Bot).
