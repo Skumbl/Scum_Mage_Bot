@@ -9,6 +9,7 @@ Scum Mage is a versatile Discord bot designed specifically for Dungeons & Dragon
 - **Dice Rolling**: Execute intricate dice expressions effortlessly using the `/roll` command.
 - **Percentile Dice**: Generate random percentage values with the `/percentile` command.
 - **Initiative Tracking**: Manage initiative order seamlessly with commands like `/join`, `/npc-join`, and `/custom-join`.
+- **Initiative Visualizer**: View and Notify those in the initiative order when it's their turn with the `/display` command.
 - **Utility Commands**: Clear up clutter in your chat using the `/clear` command or access valuable resources via `/tools`.
 ## 🚀 Getting Started
 
