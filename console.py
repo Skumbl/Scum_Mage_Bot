@@ -5,22 +5,36 @@ import random
 
 
 class Console_Log(Extension):
+
+
+    # Start Up Message
+    # ===================================================================================
     @listen()
     async def on_ready(self):
         print("Ready")
         print(f"This bot is written by {self.bot.owner}")
+    # ===================================================================================
+    
 
-    # Scum Mage comments whenever someone mentions it
+    # Grab a random scum mage reply when the bot is mentioned
+    # ===================================================================================
     @listen()
     async def on_message_create(self, event):
         if '<@1149502978835877919>' in event.message.content:
             await event.message.reply(random.choice(Scum_Replies))
+    # ===================================================================================
 
+
+    # Clear Command
+    # ===================================================================================
     @slash_command(name="clear", description="remove the last 50 messages from this channel")
     async def clear_command(self, ctx: SlashContext):
         delete = await ctx.channel.purge(deletion_limit=50)
         await ctx.send("Facera Invisibilis")
+    # ===================================================================================
 
+
+# Random Scum Mage Replies, they're very silly
 Scum_Replies = [
 "By foul muck and vile incantations, dost thou vex me! `/help`, I beseech thee!",
 "Ah, the irritation brews like a fetid potion. 'Tis but `/help` that can quell my ire.",

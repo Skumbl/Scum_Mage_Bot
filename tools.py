@@ -9,3 +9,10 @@ class Tools(Extension):
     async def rules_command(self, ctx: SlashContext):
         await ctx.send("__5eTools:__ \nhttps://5e.tools/")
     # ===================================================================================
+        
+    # Tools Simplified Command
+    # ===================================================================================
+    @slash_command(name="t", description="links 5e tools for rules and books")
+    async def t_command(self, ctx: SlashContext):
+        await self.rules_command(ctx)
+    # ===================================================================================
