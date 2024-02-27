@@ -14,7 +14,7 @@ Scum Mage is a versatile Discord bot designed specifically for Dungeons & Dragon
 
 To add Scum Mage to your Discord server and start enjoying its features, follow these simple steps:
 
-1. **Invite Scum Mage**: [Click here](https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=YOUR_PERMISSIONS&scope=applications.commands%20bot) to invite Scum Mage to your server.
+1. **Invite Scum Mage**: [Click here](https://top.gg/bot/1149502978835877919) to invite Scum Mage to your server.
 
 2. **Set Up Environment Variables**: Set up a .env in the home directory and place your `BOT_TOKEN` there
 
@@ -25,7 +25,7 @@ To add Scum Mage to your Discord server and start enjoying its features, follow 
 Scum Mage is built on top of the following libraries and APIs:
 
 - [interactions.py](https://interactions-py.github.io/interactions.py/): Main API for handling Discord interactions. 
-- [d20](https://github.com/autoplectic/d20): Dice engine serving as the base for dice rolling functionalities built by the fantastic team at [Avrae](https://avrae.io/ "https://avrae.io/")
+- [d20](https://pypi.org/project/d20/): Dice engine serving as the base for dice rolling functionalities
 * other dependencies can be found in the dependencies.txt file in the git. 
 ## 🤝 Contributions
 
