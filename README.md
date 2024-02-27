@@ -1,5 +1,10 @@
 # 🧙‍♂️ Scum Mage - Your Discord Dungeons & Dragons Bot 🎲
 
+[![License](https://badgen.net/github/license/micromatch/micromatch)](https://github.com/micromatch/micromatch/blob/master/LICENSE)
+[![Docker Image Size](https://badgen.net/docker/size/skumbl/discord-bot-image)](https://hub.docker.com/r/skumbl/discord-bot-image)
+[![Commits](https://badgen.net/github/commits/Skumbl/Scum_Mage_Bot)](https://github.com/Skumbl/Scum_Mage_Bot/commits)
+
+
 ![rsz_308353954-095ed753-7e22-49fb-aee3-f2f6b518771e](https://github.com/Skumbl/Scum_Mage_Bot/assets/111002282/ee363914-2cee-4710-8a62-74372550f2f4)
 
 Scum Mage is a versatile Discord bot designed specifically for Dungeons & Dragons enthusiasts. With a range of commands tailored to enhance your tabletop RPG experience, Scum Mage simplifies complex tasks, facilitates gameplay mechanics, and provides valuable resources, all within your Discord server.
