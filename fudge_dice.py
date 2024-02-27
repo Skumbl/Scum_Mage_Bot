@@ -15,7 +15,7 @@ class Fudge_Dice_Roll(Extension):
 
     # Fudge Simplified Command
     # ===================================================================================
-    @slash_command(name="f", description="returns a fudged result", scopes=[1004738478149468191])
+    @slash_command(name="f", description="returns a fudged result")
     async def f_command(self, ctx: SlashContext):
         await self.fudge_command(ctx)
     # ===================================================================================

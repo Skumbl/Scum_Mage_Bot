@@ -212,7 +212,7 @@ class Initiative_Handler(Extension):
         required=False,
         opt_type=OptionType.INTEGER
     )
-    async def custom_join_command(self, ctx: SlashContext, name, roll: int, mod: int=0):      # Get the guild-specific initiative order or create an empty list if it doesn't exist
+    async def custom_npc_join_command(self, ctx: SlashContext, name, roll: int, mod: int=0):      # Get the guild-specific initiative order or create an empty list if it doesn't exist
         guild_id = ctx.guild.id
         initiative_order = guild_initiative_orders.get(guild_id, [])
 
@@ -263,8 +263,8 @@ class Initiative_Handler(Extension):
         required=False,
         opt_type=OptionType.INTEGER
     )
-    async def cn_command(self, ctx: SlashContext, name, roll: int, mod: int=0):
-        await self.custom_join_command(ctx, name, roll, mod)
+    async def cn_command(self, ctx: SlashContext, name, roll: int, mod: int=0):  
+        await self.custom_npc_join_command(ctx, name, roll, mod)
     # ===================================================================================
 
 
