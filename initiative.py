@@ -69,6 +69,30 @@ class Initiative_Handler(Extension):
                         f"{r_express[0]} + {calculated_mod}")
 
     # ===================================================================================
+        
+    
+    #Join Simplified Command
+    # ===================================================================================
+    @slash_command(name="j", description="auto rolls and joins the user into the initiative order")
+    @slash_option(
+        name="mod",
+        description="initiative modifier, ex: '1' or '1d4 + 1",
+        required=False,
+        opt_type=OptionType.STRING
+    )
+    @slash_option(
+        name="roll_with",
+        description="roll with advantage or disadvantage",
+        required=False,
+        opt_type=OptionType.INTEGER,
+        choices=[
+            SlashCommandChoice(name="advantage", value=1),
+            SlashCommandChoice(name="disadvantage", value=2)
+        ]
+    )
+    async def j_command(self, ctx: SlashContext, mod: str="0", roll_with: int=0):
+        await self.join_command(ctx, mod, roll_with)
+    # ===================================================================================
 
 
     #NPC Join Function
@@ -136,6 +160,35 @@ class Initiative_Handler(Extension):
     # ===================================================================================
 
 
+    #NPC Join Simplified Command
+    # ===================================================================================
+    @slash_command(name="n", description="Add an NPC to the initiative order")
+    @slash_option(
+        name="name",
+        description="Name of the NPC",
+        required=True,
+        opt_type=OptionType.STRING
+    )
+    @slash_option(
+        name="mod",
+        description="Initiative modifier (optional)",
+        required=False,
+        opt_type=OptionType.STRING
+    )
+    @slash_option(
+    name="roll_with",
+    description="roll with advantage or disadvantage",
+    required=False,
+    opt_type=OptionType.INTEGER,
+    choices=[
+        SlashCommandChoice(name="advantage", value=1),
+        SlashCommandChoice(name="disadvantage", value=2)
+    ]
+    )
+    async def n_command(self, ctx: SlashContext, name: str, roll_with: int=0, mod: str="0"):
+        await self.npc_join_command(ctx, name, roll_with, mod)
+    # ===================================================================================
+
     #Custom NPC Join Function
     # ===================================================================================
     @slash_command(name="custom-npc-join", description="join the initiative with an NPC with a custom value")
@@ -184,6 +237,34 @@ class Initiative_Handler(Extension):
         await ctx.send(f"NPC '{name}' has joined the fray!\n" 
                        + f"🎲 = **{roll + mod}**")
 
+    # ===================================================================================
+
+
+    # Simplified Custom Join Function
+    # ===================================================================================
+    @slash_command(name="cn", description="join the initiative with an NPC with a custom value")
+    @slash_option(
+        name="name",
+        description="Name of the NPC",
+        required=True,
+        opt_type=OptionType.STRING
+    )
+    @slash_option(
+        name="roll",
+        description="Initiative Score",
+        required=True,
+        opt_type=OptionType.INTEGER
+    )
+    @slash_option(
+        name="mod",
+        description="Initiative Score",
+        required=False,
+        opt_type=OptionType.INTEGER
+    )
+    async def cn_command(self, ctx: SlashContext, name, roll: int, mod: int=0):
+        await self.custom_join_command(ctx, name, roll, mod)
+    # ===================================================================================
+
 
     #Custom Join Function
     # ===================================================================================
@@ -230,7 +311,28 @@ class Initiative_Handler(Extension):
     # ===================================================================================
 
 
-    # Components
+    # Simplified Custom Join Function
+    # ===================================================================================
+    @slash_command(name="cj", description="join the initiative with a custom value")
+    @slash_option(
+        name="roll",
+        description="Initiative Score",
+        required=True,
+        opt_type=OptionType.INTEGER
+    )
+    @slash_option(
+        name="mod",
+        description="Initiative Score",
+        required=False,
+        opt_type=OptionType.INTEGER
+    )
+    async def cj_command(self, ctx: SlashContext, roll: int, mod: int=0):
+        await self.custom_join_command(ctx, roll, mod)
+    # ===================================================================================
+         
+
+    # Components for the Display Command
+    # ===================================================================================
     components: list[ActionRow] = [
         ActionRow(
             Button(
@@ -245,6 +347,7 @@ class Initiative_Handler(Extension):
             )
         )
     ]
+    # ===================================================================================
 
 
     # Show Init Order Function, iterates through the current order and prints
@@ -266,6 +369,16 @@ class Initiative_Handler(Extension):
     # ===================================================================================
 
 
+    # Simplified Display Command
+    # ===================================================================================
+    @slash_command(name="d", description="Display and cycle through the current initiative order")
+    async def d_command(self, ctx: SlashContext):
+        await self.display_command(ctx)
+    # ===================================================================================
+
+
+    # On Component Function, listens for the button press and cycles through the initiative order
+    # =================================================================================== 
     @listen()
     async def on_component(self, event: Component):
         ctx = event.ctx
