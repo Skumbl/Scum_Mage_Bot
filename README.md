@@ -39,4 +39,4 @@ If you find Scum Mage helpful and would like to support its development, conside
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License
