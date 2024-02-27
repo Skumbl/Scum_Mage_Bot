@@ -8,6 +8,8 @@ guild_initiative_orders = {}
 last_init_message = {}
 
 class Initiative_Handler(Extension):
+
+    
     # Join Init Order Function, adds a user to the queue, and sorts it but highest init
     # ===================================================================================
     @slash_command(name="join", description="auto rolls and joins the user into the initiative order")
