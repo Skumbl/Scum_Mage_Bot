@@ -17,11 +17,7 @@ To add Scum Mage to your Discord server and start enjoying its features, follow 
 
 1. **Invite Scum Mage**: [Click here](https://top.gg/bot/1149502978835877919) to invite Scum Mage to your server.
 
-2. **Set Up Environment Variables**: Set up a .env in the home directory and place your `BOT_TOKEN` there
-
-3. Run the main.py file and you now have a functional D&D Bot
-
-4. **Usage Documentation**: Refer to the provided user manual or type `/help` within your Discord server to explore available commands and their usage.
+2. **Usage Documentation**: Refer to the provided user manual or type `/help` within your Discord server to explore available commands and their usage.
 
 ## 📚 Dependencies
 
@@ -43,3 +39,4 @@ If you find Scum Mage helpful and would like to support its development, conside
 ## 📝 License
 
 This project is licensed under the MIT License
+(software is better when free and open)
